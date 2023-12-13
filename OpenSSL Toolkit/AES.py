@@ -70,6 +70,7 @@ def decrypt_file(input_file, output_file, key):
     with open(output_file, 'wb') as file:
         file.write(decrypted_text.encode('utf-8'))
 
+'''
 # Example usage:
 plaintext = "Hello, AES encryption with cryptography library in Python!"
 key = b'SecretKey123456'  # Replace this with your actual key
@@ -94,3 +95,4 @@ print(f"Encryption completed. Encrypted text written to {encrypted_output_file}"
 # Decryption
 decrypt_file(encrypted_output_file, decrypted_output_file, key)
 print(f"Decryption completed. Decrypted text written to {decrypted_output_file}" + "\n")
+'''
