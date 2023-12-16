@@ -4,8 +4,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Signature import pkcs1_15
 from Crypto.Hash import SHA512
 
-def validate_signature(file_path):
-    public_key_path = 'public.pem'
+def validate_signature(file_path, public_key_path):
     with open(file_path, 'rb') as file:
         received_data = file.read()
 
@@ -17,13 +16,11 @@ def validate_signature(file_path):
 
     try:
         pkcs1_15.new(key).verify(h, received_signature)
-        return"Signature is valid. Authentication successful."
+        print("Signature is valid. Authentication successful.")
     except (ValueError, TypeError):
-        return"Signature is invalid. Authentication failed."
+        print("Signature is invalid. Authentication failed.")
 
-'''
 # Validate the signature
 signed_file_path = 'signed_file.bin'
 public_key_path = 'public.pem'
 validate_signature(signed_file_path, public_key_path)
-'''
