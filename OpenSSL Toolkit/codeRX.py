@@ -2,7 +2,7 @@
 
 from Crypto.PublicKey import RSA
 from Crypto.Signature import pkcs1_15
-from Crypto.Hash import SHA256
+from Crypto.Hash import SHA512
 
 def validate_signature(file_path):
     public_key_path = 'public.pem'
