@@ -12,7 +12,7 @@ def validate_signature(file_path):
     data, received_signature = received_data[:-256], received_data[-256:]
     public_key = open(public_key_path, 'rb').read()
 
-    h = SHA256.new(data)
+    h = SHA512.new(data)
     key = RSA.import_key(public_key)
 
     try:
