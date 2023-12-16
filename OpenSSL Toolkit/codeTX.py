@@ -1,6 +1,6 @@
 from Crypto.PublicKey import RSA
 from Crypto.Signature import pkcs1_15
-from Crypto.Hash import SHA256
+from Crypto.Hash import SHA512
 
 def generate_key_pair():
     key = RSA.generate(2048)
@@ -20,7 +20,7 @@ def sign_file(file_path, private_key_path, output_path):
     private_key = open(private_key_path, 'rb').read()
     key = RSA.import_key(private_key)
 
-    h = SHA256.new(data)
+    h = SHA512.new(data)
     signature = pkcs1_15.new(key).sign(h)
 
     with open(output_path, 'wb') as signed_file:
