@@ -1,7 +1,7 @@
 from codeTX import sign_file, generate_key_pair
 from AES import encrypt_file
 
-def main():
+def encrypt_and_sign():
     # Call the generate_key_pair function to handle key generation or input
     generate_key_pair()
 
@@ -19,9 +19,8 @@ def main():
     key = b'SecretKey123456'  # Replace this with your actual key
     encrypt_file(plaintext_input_file, encrypted_output_file, key)
 
-    print(f"Encryption completed. Encrypted text written to {encrypted_output_file}")
+    return(f"Encryption completed. Encrypted text written to {encrypted_output_file}")
 
-if __name__ == "__main__":
-    main()
-    
+#encrypt_and_sign()
+
 

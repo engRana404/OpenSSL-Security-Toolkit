@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Dec  2 21:53:19 2023
-
 @author: Rana Gamal
 """
 
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from cryptography.hazmat.primitives import padding
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
 from base64 import b64encode, b64decode
 import os
 
@@ -19,13 +17,10 @@ def aes_encrypt(plaintext, key):
     key = key.ljust(32, b'\x00')[:32]
 
     # Create an AES cipher object
-    cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
+    cipher = AES.new(key, AES.MODE_CBC, iv)
 
     # Pad the plaintext and encrypt it
-    padder = padding.PKCS7(algorithms.AES.block_size).padder()
-    padded_data = padder.update(plaintext) + padder.finalize()
-    encryptor = cipher.encryptor()
-    ciphertext = encryptor.update(padded_data) + encryptor.finalize()
+    ciphertext = cipher.encrypt(pad(plaintext, AES.block_size))
 
     # Combine the IV and ciphertext and return the result as a base64-encoded string
     return b64encode(iv + ciphertext).decode('utf-8')
@@ -41,21 +36,18 @@ def aes_decrypt(ciphertext, key):
     key = key.ljust(32, b'\x00')[:32]
 
     # Create an AES cipher object
-    cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
+    cipher = AES.new(key, AES.MODE_CBC, iv)
 
     # Decrypt the ciphertext and unpad the result
-    decryptor = cipher.decryptor()
-    padded_data = decryptor.update(ciphertext[16:]) + decryptor.finalize()
-    unpadder = padding.PKCS7(algorithms.AES.block_size).unpadder()
-    plaintext = unpadder.update(padded_data) + unpadder.finalize()
+    plaintext = unpad(cipher.decrypt(ciphertext[16:]), AES.block_size)
 
-    # Return the result as a UTF-8 encoded string
-    return plaintext.decode('utf-8')
+    # Return the result as binary data
+    return plaintext
 
 def encrypt_file(input_file, output_file, key):
     with open(input_file, 'rb') as file:
         plaintext = file.read()
-    
+
     encrypted_text = aes_encrypt(plaintext, key)
 
     with open(output_file, 'w') as file:
@@ -68,11 +60,11 @@ def decrypt_file(input_file, output_file, key):
     decrypted_text = aes_decrypt(encrypted_text, key)
 
     with open(output_file, 'wb') as file:
-        file.write(decrypted_text.encode('utf-8'))
+        file.write(decrypted_text)
 
 '''
 # Example usage:
-plaintext = "Hello, AES encryption with cryptography library in Python!"
+plaintext = "Hello, AES encryption with OpenSSL in Python!"
 key = b'SecretKey123456'  # Replace this with your actual key
 
 # Encryption
@@ -87,6 +79,7 @@ print(f"Decrypted text: {decrypted_text}" + "\n")
 plaintext_input_file = "Input.txt"
 encrypted_output_file = "Output.txt"
 decrypted_output_file = "DOutput.txt"
+
 
 # Encryption
 encrypt_file(plaintext_input_file, encrypted_output_file, key)
