@@ -1,12 +1,12 @@
 from codeTX import sign_file, generate_key_pair
 from AES import encrypt_file
 
-def encrypt_and_sign():
+def encrypt_and_sign(file_to_sign):
     # Call the generate_key_pair function to handle key generation or input
     generate_key_pair()
 
     # Sign a file
-    file_to_sign = 'file_to_sign.txt'
+    #file_to_sign = 'file_to_sign.txt'
     signed_file_path = 'signed_file.bin'
     private_key_path = 'private.pem'
     public_key_path = 'public.pem'

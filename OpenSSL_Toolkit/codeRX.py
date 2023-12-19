@@ -20,8 +20,3 @@ def validate_signature(file_path, public_key_path):
         return("Signature is valid. Authentication successful.")
     except (ValueError, TypeError):
         return("Signature is invalid. Authentication failed.")
-
-# Validate the signature
-signed_file_path = 'signed_file.bin'
-public_key_path = 'public.pem'
-validate_signature(signed_file_path, public_key_path)
