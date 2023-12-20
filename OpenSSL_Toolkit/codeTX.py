@@ -36,5 +36,4 @@ def generate_key_pair_and_sign_file(file_to_sign='file_to_sign.txt'):
     signed_file_path = 'signed_file.bin'
 
     sign_file(file_to_sign, private_key_path, signed_file_path)
-    print("File signed successfully.")
 
