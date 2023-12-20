@@ -155,7 +155,7 @@ class CryptoApp:
             validation_result = validate_signature(signed_file_path, 'public.pem')
             self.print_to_message_area(validation_result)
         except Exception as e:
-            self.print_to_message_area(f"Error during validation: {str(e)}")
+            self.print_to_message_area(f"Error during validation: Please generate the RSA keys.")
 
     def encrypt_and_sign(self):
         try:
