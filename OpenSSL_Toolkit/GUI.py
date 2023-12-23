@@ -34,29 +34,29 @@ class CryptoApp:
         self.print_to_message_area(welcome_message)
 
         # AES Buttons
-        self.encrypt_aes_button = tk.Button(root, text="Encrypt File (AES)", command=self.encrypt_aes_file, width=40, height=1)
+        self.encrypt_aes_button = tk.Button(root, text="Encrypt File (AES)", command=self.encrypt_aes_file, width=40, height=2)
         self.encrypt_aes_button.pack(pady=5)
 
-        self.decrypt_aes_button = tk.Button(root, text="Decrypt File (AES)", command=self.decrypt_aes_file, width=40, height=1)
+        self.decrypt_aes_button = tk.Button(root, text="Decrypt File (AES)", command=self.decrypt_aes_file, width=40, height=2)
         self.decrypt_aes_button.pack(pady=5)
         
         # RSA Buttons
-        self.generate_key_pair_button = tk.Button(root, text="Generate RSA Key Pair", command=self.generate_rsa_key_pair, width=40, height=1)
+        self.generate_key_pair_button = tk.Button(root, text="Generate RSA Key Pair", command=self.generate_rsa_key_pair, width=40, height=2)
         self.generate_key_pair_button.pack(pady=5)
 
-        self.sign_file_button = tk.Button(root, text="Sign File", command=self.sign_file_rsa, width=40, height=1)
+        self.sign_file_button = tk.Button(root, text="Sign File", command=self.sign_file_rsa, width=40, height=2)
         self.sign_file_button.pack(pady=5)
 
-        self.generate_and_sign_button = tk.Button(root, text="Generate Key Pair and Sign File", command=self.generate_key_pair_and_sign_file, width=40, height=1)
+        self.generate_and_sign_button = tk.Button(root, text="Generate Key Pair and Sign File", command=self.generate_key_pair_and_sign_file, width=40, height=2)
         self.generate_and_sign_button.pack(pady=5)
 
-        self.verify_rsa_button = tk.Button(root, text="Validate File", command=self.validate_rsa_file, width=40, height=1)
+        self.verify_rsa_button = tk.Button(root, text="Validate File", command=self.validate_rsa_file, width=40, height=2)
         self.verify_rsa_button.pack(pady=5)
 
-        self.generate_and_sign_button = tk.Button(root, text="Encrypt and Sign", command=self.encrypt_and_sign, width=40, height=1)
+        self.generate_and_sign_button = tk.Button(root, text="Encrypt and Sign", command=self.encrypt_and_sign, width=40, height=2)
         self.generate_and_sign_button.pack(pady=5)
 
-        self.verify_rsa_button = tk.Button(root, text="Decrypt and Validate", command=self.decrypt_and_validate, width=40, height=1)
+        self.verify_rsa_button = tk.Button(root, text="Decrypt and Validate", command=self.decrypt_and_validate, width=40, height=2)
         self.verify_rsa_button.pack(pady=5)
 
     def print_to_message_area(self, message):
